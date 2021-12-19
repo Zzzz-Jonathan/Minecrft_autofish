@@ -39,11 +39,11 @@ class TextPos:
             w = x2 - x1
             h = max(y2 - y1, 150)
 
-            return max(x1-w, 0), max(y1-h, 0), min(x2+w, SCREEN_W), min(y2+h, SCREEN_H)
+            return max(x1-0.8*w, 0), max(y1-0.5*h, 0), min(x2+0.2*w, SCREEN_W), min(y2+0.5*h, SCREEN_H)
         return 0, 0, 0, 0
 
 
-def grab(size=None):  # works on macOS(RGBA) and Windows(RGB) only
+def grab(size=None):  # macOS(RGBA) Windows(RGB)
     im = ImageGrab.grab()  # What region to copy. Default is the entire screen
     if size is not None:
         im = im.resize((size, size))
