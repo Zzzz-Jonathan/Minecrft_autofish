@@ -1,0 +1,26 @@
+<annotation>
+	<folder>train_org_data</folder>
+	<filename>4.png</filename>
+	<path>C:\Users\12902\Desktop\data\train_org_data\4.png</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>3360</width>
+		<height>2100</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>inf</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>2306</xmin>
+			<ymin>1389</ymin>
+			<xmax>2530</xmax>
+			<ymax>1430</ymax>
+		</bndbox>
+	</object>
+</annotation>

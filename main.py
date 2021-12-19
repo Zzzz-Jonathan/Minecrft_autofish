@@ -14,8 +14,8 @@ CHECK_TIME = 0
 class TextPos:
     def __init__(self):
         self.loader = transforms.Compose([transforms.ToTensor()])
-        self.model = Darknet("yolov3-custom.cfg", img_size=SIZE).to('cpu')
-        self.model.load_state_dict(torch.load('weights.pth', map_location='cpu'))
+        self.model = Darknet("./yolov3-custom.cfg", img_size=SIZE).to('cpu')
+        self.model.load_state_dict(torch.load('./weights.pth', map_location='cpu'))
         self.model.eval()
 
     def check_position(self):
