@@ -21,8 +21,8 @@ class Fish:
         ocr = CnOcr()
 
         textImg = self.detect(img)
-        ii = Image.fromarray(textImg.astype('uint8')).convert('RGB')
-        ii.save(str(time.time()) + '.jpg')
+        # ii = Image.fromarray(textImg.astype('uint8')).convert('RGB')
+        # ii.save(str(time.time()) + '.jpg')
 
         # cnocr识别文本
         res = ocr.ocr(textImg)
