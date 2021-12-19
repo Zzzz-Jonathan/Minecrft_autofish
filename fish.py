@@ -25,6 +25,7 @@ class Fish:
         # ii.save(str(time.time()) + '.jpg')
 
         # cnocr识别文本
+        print(textImg.shape)
         res = ocr.ocr(textImg)
         print("Predicted Chars:", res)
 

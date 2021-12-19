@@ -70,6 +70,6 @@ if __name__ == '__main__':
             CHECK_TIME = time.time()
 
         im = grab().crop((px1, py1, px2, py2))
-        im.save('./img/'+str(time.time())+'.jpg')
+        # im.save('./img/'+str(time.time())+'.jpg')
         img = np.array(im)
         fish.fish(img)
