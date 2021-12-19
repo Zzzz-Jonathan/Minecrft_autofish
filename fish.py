@@ -3,7 +3,7 @@ import pyautogui
 import time
 from cnocr import CnOcr
 import cv2
-from PIL import Image
+from PIL import ImageGrab, Image
 import numpy as np
 
 pyautogui.PAUSE = 1
@@ -19,12 +19,10 @@ class Fish:
 
     def fish(self, img):
         ocr = CnOcr()
-        # img = pyautogui.screenshot(region=(1455, 800, 200, 200))
-        # img = np.asarray(img)
 
         textImg = self.detect(img)
-        ii = Image.fromarray(textImg.astype('uint8')).convert('RGB')
-        ii.save(str(time.time())+'.jpg')
+        # ii = Image.fromarray(textImg.astype('uint8')).convert('RGB')
+        # ii.save(str(time.time()) + '.jpg')
 
         # cnocr识别文本
         res = ocr.ocr(textImg)
@@ -42,7 +40,11 @@ class Fish:
         dilation = self.preprocess(gray)
         x, y, w, h = self.findTextRegion(dilation)
 
-        return img[y:y + h, x:x + w]
+        ii = img[y:y + h, x:x + w]
+        gray_ii = cv2.cvtColor(ii, cv2.COLOR_BGR2GRAY)
+        _, binary_ii = cv2.threshold(gray_ii, 60, 255, cv2.THRESH_BINARY)
+
+        return binary_ii
 
     def preprocess(self, gray):
         # Sobel算子
@@ -52,7 +54,7 @@ class Fish:
         element2 = cv2.getStructuringElement(cv2.MORPH_RECT, (24, 6))
         dilation = cv2.dilate(binary, element2, iterations=1)
         erosion = cv2.erode(dilation, element1, iterations=1)
-        dilation2 = cv2.dilate(erosion, element2, iterations=2)
+        dilation2 = cv2.dilate(erosion, element2, iterations=4)
 
         return dilation2
 
@@ -73,7 +75,16 @@ class Fish:
 
         return x, y, w, h
 
-# fish = Fish()
-# time.sleep(5)
-# while True:
-#     fish.fish(None)
+
+if __name__ == '__main__':
+    fish = Fish()
+    img = Image.open('./img/110.jpg')
+    # img = Image.open('./img/110.jpg')
+    img.save('00.jpg')
+    img = np.array(img)
+
+    ii = fish.detect(img)
+    ii = Image.fromarray(ii.astype('uint8')).convert('RGB')
+    ii.save('11.jpg')
+
+
